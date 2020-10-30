@@ -24,6 +24,7 @@ const win = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
     
 }
@@ -50,6 +51,7 @@ const goldLose = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 }
 
@@ -89,6 +91,7 @@ const goldRoom = function() {
     goldForm.appendChild(goldInput);
     goldForm.appendChild(goldSubmit);
     
+    // Adding a click listener for a submit button
     goldSubmit.addEventListener('click', checkContent);
 };
 
@@ -114,6 +117,7 @@ const hallwayLose = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 };
 
@@ -155,6 +159,7 @@ const hallway = function() {
     hallwayForm.appendChild(hallwayInput);
     hallwayForm.appendChild(hallwaySubmit);
     
+    // Adding a click listener for a submit button
     hallwaySubmit.addEventListener('click', checkContent);
 }
 
@@ -180,6 +185,7 @@ const sirenLose = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 };
 
@@ -221,6 +227,7 @@ const siren = function() {
     sirenForm.appendChild(sirenInput);
     sirenForm.appendChild(sirenSubmit);
     
+    // Adding a click listener for a submit button
     sirenSubmit.addEventListener('click', checkContent);
 }
 
@@ -246,6 +253,7 @@ const rngWin = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 }
 
@@ -271,6 +279,7 @@ const rngLose = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 };
 
@@ -313,6 +322,7 @@ const numGuess = function() {
     rngForm.appendChild(rngInput);
     rngForm.appendChild(rngSubmit);
     
+    // Adding a click listener for a submit button
     rngSubmit.addEventListener('click', checkContent);
 };
 
@@ -338,6 +348,7 @@ const bearDeath = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 };
 
@@ -358,7 +369,7 @@ const bearRoom = function() {
     const checkContent = function() {
         event.preventDefault();
         let answer = bearInput.value;
-            if (answer == 'taunt') {
+            if (answer == 'taunt the bear' || answer == 'taunt' || answer == 'taunt bear') {
                 return numGuess();
             } else {
                 return bearDeath();
@@ -377,6 +388,7 @@ const bearRoom = function() {
     bearForm.appendChild(bearInput);
     bearForm.appendChild(bearSubmit);
     
+    // Adding a click listener for a submit button
     bearSubmit.addEventListener('click', checkContent);
     
 };
@@ -403,6 +415,7 @@ const pitTrap = function() {
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
 };
 
@@ -460,6 +473,7 @@ const start = function() {
         };
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", doorKeys);
 };
 
@@ -493,20 +507,23 @@ const death = function() {
     const continueKey = function (event) {
             
         if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
             return playAgain();
         } else {}
     };  
     
+    //Add event listener for keydown
     window.addEventListener("keydown", continueKey);
     
 };
 
+// This function will reset the page for a new scene
 const resetScene = function() {
     sceneDiv.innerHTML = ''
     buttonDiv.innerHTML = ''
 }
 
-// Starting Page
+// Starting Page, also defining some important global variables
 const sceneDiv = document.querySelector("#sceneDiv");
 const buttonDiv = document.querySelector("#buttonDiv")
 
