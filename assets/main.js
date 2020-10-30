@@ -1,5 +1,53 @@
 // DOM Adventure Game
 
+// They won the RNG Game
+const rngWin = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["Looks like you picked the right number!", "Hit spacebar to continue."];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return goldRoom();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+}
+
+// They lost the RNG Game
+const rngLose = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["Looks like you picked the wrong number...", "Hit spacebar to continue."];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return siren();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+};
+
 //Create an RNG game! If they fail, they will go to a further away room from the finish.
 const numGuess = function() {
     
@@ -18,10 +66,10 @@ const numGuess = function() {
     
     const checkContent = function() {
         let answer = rngInput.value;
-            if (answer == 'realNum') {
-                return start();
+            if (answer == realNum) {
+                return rngWin();
             } else {
-                return death();
+                return rngLose();
             }
     };
     
@@ -55,6 +103,7 @@ const bearDeath = function() {
     const continueKey = function (event) {
             
         if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
             return death();
         } else {}
     };  
@@ -99,7 +148,6 @@ const bearRoom = function() {
     
     bearSubmit.addEventListener('click', checkContent);
     
-    
 };
 
 // pitTrap Scene
@@ -118,12 +166,13 @@ const pitTrap = function() {
     const continueKey = function (event) {
             
         if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
             return death();
         } else {}
     };  
     
     window.addEventListener("keydown", continueKey);
-}
+};
 
 // First Scene 
 const start = function() {
