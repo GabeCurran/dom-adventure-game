@@ -1,4 +1,113 @@
+// this code is brought to you by the js gang
+
 // DOM Adventure Game
+
+// Hallway scene
+const hallway = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["You're in a very long hallway.", "There's a doorway at the end lit up with a candle\nand you hear footsteps running towards you from behind now.", "There is also a doorway closer, but the room is dark.", "\nWill you hide in the dark room or run to the end and lock the door?"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Checking to see if they have the right answer and acting accordingly
+    const checkContent = function() {
+        event.preventDefault();
+        let answer = hallwayInput.value;
+            if (answer == 'run' || answer == 'run away') {
+                return goldRoom();
+            } else if (answer == 'hide') {
+                return hallwayLose();
+            } else {
+                alert('Will you "run" or "hide"?')
+            }
+    };
+    
+    // All the form and input stuff
+    let hallwayForm = document.createElement('form')
+    let hallwayInput = document.createElement('input')
+    let hallwaySubmit = document.createElement('input')
+    
+    hallwayInput.setAttribute("type", "text");
+    hallwaySubmit.setAttribute("type", "submit");
+    
+    buttonDiv.appendChild(hallwayForm);
+    hallwayForm.appendChild(hallwayInput);
+    hallwayForm.appendChild(hallwaySubmit);
+    
+    hallwaySubmit.addEventListener('click', checkContent);
+}
+
+// The lady ate them
+const sirenLose = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["The lady jumps at you and attacks with her vicious fangs", "Hit spacebar to continue."];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Space for continue to next scene
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return death();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+};
+
+// scary lady time
+const siren = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["\nThe floor below you opens", "You hit the floor...ow.", "It's dark but you can still look around you.", "You see a lady crying in the dark corner of the room.", "You also see a doorway that could lead out.", "\nWill you help the lady or leave the room?"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Checking to see if they have the right answer and acting accordingly
+    const checkContent = function() {
+        event.preventDefault();
+        let answer = sirenInput.value;
+            if (answer == 'leave' || answer == 'leave the room') {
+                return hallway();
+            } else if (answer == 'help'|| answer == 'help the lady' || answer == 'lady') {
+                return sirenLose();
+            } else {
+                alert('Will you "help" or "leave"?')
+            }
+    };
+    
+    // All the form and input stuff
+    let sirenForm = document.createElement('form')
+    let sirenInput = document.createElement('input')
+    let sirenSubmit = document.createElement('input')
+    
+    sirenInput.setAttribute("type", "text");
+    sirenSubmit.setAttribute("type", "submit");
+    
+    buttonDiv.appendChild(sirenForm);
+    sirenForm.appendChild(sirenInput);
+    sirenForm.appendChild(sirenSubmit);
+    
+    sirenSubmit.addEventListener('click', checkContent);
+}
 
 // They won the RNG Game
 const rngWin = function() {
@@ -13,6 +122,7 @@ const rngWin = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Space for continue to next scene
     const continueKey = function (event) {
             
         if (event.key == ' ') {
@@ -37,6 +147,7 @@ const rngLose = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Space for continue to next scene
     const continueKey = function (event) {
             
         if (event.key == ' ') {
@@ -61,10 +172,12 @@ const numGuess = function() {
             sceneDiv.appendChild(paragraph);
         };
     
-  //Create a RNG and prompt the user to pick one or two.
+  //Create a random number
   let realNum = Math.round(Math.random() * 2);
     
+    // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
+        event.preventDefault();
         let answer = rngInput.value;
             if (answer == realNum) {
                 return rngWin();
@@ -73,6 +186,7 @@ const numGuess = function() {
             }
     };
     
+    // All the form and input stuff
     let rngForm = document.createElement('form')
     let rngInput = document.createElement('input')
     let rngSubmit = document.createElement('input')
@@ -100,6 +214,7 @@ const bearDeath = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Space for continue to next scene
     const continueKey = function (event) {
             
         if (event.key == ' ') {
@@ -124,17 +239,18 @@ const bearRoom = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
+        event.preventDefault();
         let answer = bearInput.value;
-            if (answer == 'taunt bear') {
+            if (answer == 'taunt') {
                 return numGuess();
             } else {
                 return bearDeath();
             }
     };
 
-  // Checking to see how they deal with the bear
-
+    // All the form and input stuff
     let bearForm = document.createElement('form')
     let bearInput = document.createElement('input')
     let bearSubmit = document.createElement('input')
@@ -163,6 +279,7 @@ const pitTrap = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Space for continue to next scene
     const continueKey = function (event) {
             
         if (event.key == ' ') {
@@ -209,6 +326,7 @@ const start = function() {
     
     // Key Listener for choosing a door
         
+    // Arrow keys for picking answer
     const doorKeys = function (event) {
             
         switch(event.key) {
@@ -256,6 +374,7 @@ const death = function() {
             sceneDiv.appendChild(paragraph);
         };
     
+    // Space for continue to next scene
     const continueKey = function (event) {
             
         if (event.key == ' ') {
