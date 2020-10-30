@@ -2,6 +2,121 @@
 
 // DOM Adventure Game
 
+// They won the game scene!
+const win = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["You did it!", "Congratulations on the win!", "Hit spacebar to continue"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Space for continue to next scene
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return playAgain();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+    
+}
+
+// Gold lose scene
+const goldLose = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["You were too greedy, you lose!", "Hit spacebar to continue"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Space for continue to next scene
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return playAgain();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+}
+
+// Gold room scene, they're almost done
+const goldRoom = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["\nThis room has a big pile of gold.", "How much will you take?"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Checking to see if they have a good answer and acting accordingly
+    const checkContent = function() {
+        event.preventDefault();
+        let answer = goldInput.value;
+            if (answer <= 100) {
+                return win();
+            } else if (answer > 100) {
+                return goldLose();
+            } else {}
+    };
+    
+    // All the form and input stuff
+    let goldForm = document.createElement('form')
+    let goldInput = document.createElement('input')
+    let goldSubmit = document.createElement('input')
+    
+    goldInput.setAttribute("type", "number");
+    goldSubmit.setAttribute("type", "submit");
+    
+    buttonDiv.appendChild(goldForm);
+    goldForm.appendChild(goldInput);
+    goldForm.appendChild(goldSubmit);
+    
+    goldSubmit.addEventListener('click', checkContent);
+};
+
+// Hallway lose scene
+const hallwayLose = function() {
+    
+    resetScene();
+    
+    // Displayed Text
+    const paragraphs = ["You hide away in the dark room...", "The lady from before sprints in!", "She attacks you with her demonic hands and teeth!", "Hit spacebar to continue"];
+        for (let line of paragraphs) {
+            paragraph = document.createElement("p");
+            paragraph.textContent = line;
+            sceneDiv.appendChild(paragraph);
+        };
+    
+    // Space for continue to next scene
+    const continueKey = function (event) {
+            
+        if (event.key == ' ') {
+            window.removeEventListener('keydown', continueKey)
+            return death();
+        } else {}
+    };  
+    
+    window.addEventListener("keydown", continueKey);
+};
+
 // Hallway scene
 const hallway = function() {
     
@@ -191,7 +306,7 @@ const numGuess = function() {
     let rngInput = document.createElement('input')
     let rngSubmit = document.createElement('input')
     
-    rngInput.setAttribute("type", "text");
+    rngInput.setAttribute("type", "number");
     rngSubmit.setAttribute("type", "submit");
     
     buttonDiv.appendChild(rngForm);
