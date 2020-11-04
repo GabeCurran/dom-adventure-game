@@ -71,7 +71,7 @@ const goldRoom = function() {
     // Checking to see if they have a good answer and acting accordingly
     const checkContent = function() {
         event.preventDefault();
-        let answer = goldInput.value;
+        let answer = goldInput.value.toLowerCase();
             if (answer <= 100) {
                 return win();
             } else if (answer > 100) {
@@ -137,7 +137,7 @@ const hallway = function() {
     // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
         event.preventDefault();
-        let answer = hallwayInput.value;
+        let answer = hallwayInput.value.toLowerCase();
             if (answer == 'run' || answer == 'run away') {
                 return goldRoom();
             } else if (answer == 'hide') {
@@ -205,7 +205,7 @@ const siren = function() {
     // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
         event.preventDefault();
-        let answer = sirenInput.value;
+        let answer = sirenInput.value.toLowerCase();
             if (answer == 'leave' || answer == 'leave the room') {
                 return hallway();
             } else if (answer == 'help'|| answer == 'help the lady' || answer == 'lady') {
@@ -302,7 +302,7 @@ const numGuess = function() {
     // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
         event.preventDefault();
-        let answer = rngInput.value;
+        let answer = rngInput.value.toLowerCase();
             if (answer == realNum) {
                 return rngWin();
             } else {
@@ -368,7 +368,7 @@ const bearRoom = function() {
     // Checking to see if they have the right answer and acting accordingly
     const checkContent = function() {
         event.preventDefault();
-        let answer = bearInput.value;
+        let answer = bearInput.value.toLowerCase();
             if (answer == 'taunt the bear' || answer == 'taunt' || answer == 'taunt bear') {
                 return numGuess();
             } else {
