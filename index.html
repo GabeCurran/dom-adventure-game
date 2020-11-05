@@ -29,6 +29,18 @@
 let input= document.createElement("input");
 input.type="text";
 let bear2= input.value;
+        
+        const logInput = function() {
+            
+            if (event.key == '-') {
+                window.removeEventListener('keydown', logInput);
+                console.log(input.value);
+            } else {}
+            
+        };
+        
+        window.addEventListener('keydown', logInput)
+        
 document.getElementById("bear").appendChild(input);
 if (bear2 === "take honey") {
   // Stop this scene and send them to the death scene
